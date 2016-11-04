@@ -1,5 +1,8 @@
 FROM mjmgaro/centos-r-base:latest
 
+RUN \
+  yum install -y unzip netcdf-devel libxml2-devel ImageMagick graphviz cairo-devel libXt-devel 
+
 # Install Metaboanalyst R package prerequisites "Rserve", "ellipse", "scatterplot3d","pls", "caret", "multicore", "lattice", "Cairo", 
 # "randomForest", "e1071","gplots", "som", "xtable", "RColorBrewer", "xcms","impute", "pcaMethods","siggenes", 
 # "globaltest", "GlobalAncova", "Rgraphviz","KEGGgraph", "preprocessCore", "genefilter", "pheatmap", "igraph", 
