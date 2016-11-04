@@ -1,4 +1,4 @@
-FROM mjmgaro/centos-r-base:latest
+FROM mjmg/centos-r-base:latest
 
 RUN \
   yum install -y unzip netcdf-devel libxml2-devel ImageMagick graphviz cairo-devel libXt-devel 
