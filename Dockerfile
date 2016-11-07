@@ -6,11 +6,10 @@ RUN \
 # Install Metaboanalyst R package prerequisites "Rserve", "ellipse", "scatterplot3d","pls", "caret", "multicore", "lattice", "Cairo", 
 # "randomForest", "e1071","gplots", "som", "xtable", "RColorBrewer", "xcms","impute", "pcaMethods","siggenes", 
 # "globaltest", "GlobalAncova", "Rgraphviz","KEGGgraph", "preprocessCore", "genefilter", "pheatmap", "igraph", 
-# "RJSONIO", "SSPA", "caTools", "ROCR", "pROC" 
+# "RJSONIO", "SSPA", "caTools", "ROCR", "pROC", "sva" 
 # Parallel package is used instead of multicore which is already in core packages
 
-# This installs other R packages under Bioconductor
-RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('mzR')"
+# This installs R packages from Bioconductor
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('xcms')"
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('globaltest')"
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('impute')"
@@ -23,8 +22,9 @@ RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('preproc
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('genefilter')"
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('SSPA')"
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('GlobalAncova')"
+RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('sva')"
 
-
+# This installs R packages from CRAN
 RUN Rscript -e "install.packages('Rserve')"
 RUN Rscript -e "install.packages('ellipse')"
 RUN Rscript -e "install.packages('scatterplot3d')"
