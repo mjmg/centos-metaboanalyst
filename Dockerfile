@@ -85,10 +85,6 @@ RUN \
   ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
   ./asadmin stop-domain
 
-RUN echo "export PATH=$PATH:/opt/glassfish/glassfish4/bin" >> /opt/glassfish/.bashrc
-
-COPY startup.sh /opt/glassfish/glassfish4/bin/startup.sh
-
 USER root
 
 # Add supervisor conf files
