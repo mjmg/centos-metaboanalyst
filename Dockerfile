@@ -50,8 +50,8 @@ RUN Rscript -e "install.packages('pROC')"
 # Based from https://github.com/glassfish/docker/blob/master/oracle-jdk/Dockerfile
 
 ENV JAVA_HOME /usr/lib/jvm/java-openjdk
-ENV GLASSFISH_PKG http://download.java.net/glassfish/4.0/release/glassfish-4.0.zip
-ENV PKG_FILE_NAME glassfish-4.0.zip
+ENV GLASSFISH_PKG http://download.java.net/glassfish/4.1.1/release/glassfish-4.1.1.zip
+ENV PKG_FILE_NAME glassfish-4.1.1.zip
 
 #From https://github.com/glassfish/docker/blob/master/oracle-jdk/Dockerfile
 RUN \  
@@ -91,9 +91,11 @@ COPY startup.sh /opt/glassfish/glassfish4/bin/startup.sh
 
 USER root
 
-RUN chown -R glassfish:glassfish /opt/glassfish/glassfish4/bin/startup.sh && \
-    chmod u+x /opt/glassfish/glassfish4/bin/startup.sh && \
-    chmod g+x /opt/glassfish/glassfish4/bin/startup.sh 
+# Add supervisor conf files
+ADD \
+  Rserve.conf /etc/supervisor/conf.d/Rserve.conf
+ADD \
+  glassfish.conf /etc/supervisor/conf.d/glassfish.conf
 
-# Default command to run on container boot
-ENTRYPOINT /opt/glassfish/glassfish4/bin/startup.sh
+# Define default command.
+CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
